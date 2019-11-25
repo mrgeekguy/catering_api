@@ -1,7 +1,7 @@
 import datetime
 from . import db
 
-class Client():
+class Client(db.Model):
     __tablename__ = "clients"
 
     id = db.Column(db.Integer, primary_key=True)
