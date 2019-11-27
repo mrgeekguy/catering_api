@@ -1,5 +1,6 @@
-import datetime
 from . import db
+from datetime import datetime
+from marshmallow import Schema, fields
 
 class Client(db.Model):
     __tablename__ = "clients"
@@ -20,5 +21,10 @@ class Client(db.Model):
 
     def save(self):
         db.session.add(self)
-        db.session.save()
         db.session.commit()
+        return f"Client {self.name} added."
+
+    @staticmethod
+    def get_client(email):
+        return Client.query.filter_by(email=email).first()
+
